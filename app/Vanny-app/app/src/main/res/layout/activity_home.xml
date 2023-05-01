@@ -7,20 +7,44 @@
     android:background="#201a30"
     tools:context=".HomeActivity">
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settingsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/axiformaregular"
+        android:drawableRight="@drawable/baseline_settings_24"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        />
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, User"
+        android:layout_marginLeft="40dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/axiformaheavy"
+        android:textSize="24dp"
+        android:layout_marginTop="25dp"
+
+        />
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/pairButton"
         android:layout_width="220dp"
         android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="195dp"
         android:backgroundTint="@color/white"
+        android:fontFamily="@font/proximanovaregular"
         android:text="Pair New Device"
         android:textColor="@color/black"
-        android:fontFamily="@font/proximanovaregular"
-        android:layout_centerVertical="true"
-        />
-
+        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>

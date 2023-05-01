@@ -17,8 +17,10 @@ public class HomeActivity extends AppCompatActivity {
         pairButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                RemoteConnection remoteConnection = new RemoteConnection();
+                RemoteConnection.connectToPi();
             }
         });
     }
+
 }
