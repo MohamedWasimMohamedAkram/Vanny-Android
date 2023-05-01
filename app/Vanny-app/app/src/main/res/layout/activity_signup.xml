@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#201a30"
+    tools:context=".SignupActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="Back"
+        android:textColor="@color/white"
+        android:fontFamily="@font/axiformaregular"
+        android:drawableLeft="@drawable/baseline_arrow_back_ios_24"
+        android:layout_marginTop="15dp"
+
+        />
+
+
+    <ImageView
+        android:id="@+id/vannyLogo"
+        android:layout_width="106dp"
+        android:layout_height="92dp"
+        android:layout_below="@+id/backButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/logowotext" />
+
+    <TextView
+        android:id="@+id/createAccountText"
+        android:layout_below="@id/vannyLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        android:layout_marginLeft="40dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/axiformablack"
+        android:layout_centerHorizontal="true"
+        android:textSize="24dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/usernameField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/createAccountText"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/roundborder"
+        android:backgroundTint="#44FFFFFF"
+        android:hint="Username"
+        android:padding="14dp"
+        android:textSize="14dp"
+        android:textColorHint="#66FFFFFF"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/proximanovaregular"
+        android:drawableRight="@drawable/baseline_person_24"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/emailField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/usernameField"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/roundborder"
+        android:backgroundTint="#44FFFFFF"
+        android:hint="Email"
+        android:padding="14dp"
+        android:textSize="14dp"
+        android:textColorHint="#66FFFFFF"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/proximanovaregular"
+        android:drawableRight="@drawable/baseline_email_24"
+        android:inputType="textWebEmailAddress"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/passwordField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailField"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/roundborder"
+        android:backgroundTint="#44FFFFFF"
+        android:drawableRight="@drawable/baseline_key_24"
+        android:fontFamily="@font/proximanovaregular"
+        android:hint="Password"
+        android:padding="14dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#66FFFFFF"
+        android:textSize="14dp"
+        android:inputType="textWebPassword"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/confirmPasswordField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordField"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/roundborder"
+        android:backgroundTint="#44FFFFFF"
+        android:drawableRight="@drawable/baseline_key_24"
+        android:fontFamily="@font/proximanovaregular"
+        android:hint="Confirm Password"
+        android:padding="14dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#66FFFFFF"
+        android:textSize="14dp"
+        android:inputType="textWebPassword"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signupButton"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/confirmPasswordField"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/white"
+        android:text="Sign Up"
+        android:textColor="@color/black"
+        android:fontFamily="@font/proximanovaregular"
+        android:layout_marginTop="40dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/forgotPasswordButton"
+        android:layout_below="@id/signupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="Already have an account?"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/axiformaregular"
+        />
+
+
+
+</RelativeLayout>

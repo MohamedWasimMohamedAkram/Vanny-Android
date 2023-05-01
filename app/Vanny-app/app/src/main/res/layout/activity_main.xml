@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#201a30"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Vanny"
+        android:fontFamily="@font/axiformaregular"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:textSize="24dp"
+        android:paddingTop="50dp"
+        />
+
+    <ImageView
+        android:id="@+id/vannyLogo"
+        android:layout_below="@id/welcomeText"
+        android:layout_width="227dp"
+        android:layout_height="365dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/logo2"
+        android:layout_marginTop="20dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginButton"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/vannyLogo"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/white"
+        android:text="Log In"
+        android:textColor="@color/black"
+        android:fontFamily="@font/proximanovaregular"
+        android:layout_marginTop="30dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signupButton"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/white"
+        android:text="Sign Up"
+        android:textColor="@color/black"
+        android:fontFamily="@font/proximanovaregular"
+        android:layout_marginTop="15dp"
+        />
+
+</RelativeLayout>

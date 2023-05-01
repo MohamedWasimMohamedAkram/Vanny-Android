@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#201a30"
+    tools:context=".LoginActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="Back"
+        android:fontFamily="@font/axiformaregular"
+        android:drawableLeft="@drawable/baseline_arrow_back_ios_24"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
+        />
+
+
+    <ImageView
+        android:id="@+id/vannyLogo"
+        android:layout_below="@+id/backButton"
+        android:layout_width="154dp"
+        android:layout_height="199dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/logowotext" />
+
+    <TextView
+        android:id="@+id/proceedText"
+        android:layout_below="@id/vannyLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Proceed with your"
+        android:layout_marginLeft="40dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/proximanovaaltlight"
+        android:textSize="24dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/loginText"
+        android:layout_below="@id/proceedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_marginLeft="40dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/axiformablack"
+        android:textSize="24dp"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/usernameField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginText"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/roundborder"
+        android:backgroundTint="#44FFFFFF"
+        android:hint="Username"
+        android:padding="14dp"
+        android:textSize="14dp"
+        android:textColorHint="#66FFFFFF"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/proximanovaregular"
+        android:drawableRight="@drawable/baseline_person_24"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/passwordField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/usernameField"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/roundborder"
+        android:backgroundTint="#44FFFFFF"
+        android:hint="Password"
+        android:padding="14dp"
+        android:textSize="14dp"
+        android:textColorHint="#66FFFFFF"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/proximanovaregular"
+        android:drawableRight="@drawable/baseline_key_24"
+        android:inputType="textWebPassword"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginButton"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/passwordField"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/white"
+        android:text="Log In"
+        android:textColor="@color/black"
+        android:fontFamily="@font/proximanovaregular"
+        android:layout_marginTop="40dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/forgotPasswordButton"
+        android:layout_below="@id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="Forgot Password?"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/axiformaregular"
+        android:textColor="@color/white"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/createAccountButton"
+        android:layout_below="@id/forgotPasswordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="Create new account"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/axiformaregular"
+        />
+
+
+
+</RelativeLayout>
