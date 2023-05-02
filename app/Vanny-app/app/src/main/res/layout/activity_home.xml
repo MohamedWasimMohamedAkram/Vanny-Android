@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:textColor="@color/white"
         android:fontFamily="@font/axiformaregular"
         android:drawableRight="@drawable/baseline_settings_24"
@@ -27,9 +27,9 @@
         android:text="Hello, User"
         android:layout_marginLeft="40dp"
         android:textColor="@color/white"
-        android:fontFamily="@font/axiformaheavy"
+        android:fontFamily="@font/axiformaregular"
         android:textSize="24dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
 
         />
 
@@ -45,6 +45,12 @@
         android:text="Pair New Device"
         android:textColor="@color/black"
         android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/streamContainer"
+        />
 
 
 </RelativeLayout>
