@@ -44,7 +44,9 @@
         android:fontFamily="@font/proximanovaregular"
         android:text="Pair New Device"
         android:textColor="@color/black"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="publish"
+        />
 
     <ImageView
         android:layout_width="match_parent"

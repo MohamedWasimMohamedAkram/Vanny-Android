@@ -15,12 +15,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -28,6 +31,10 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import java.util.Arrays;
 
 public class HomeActivity extends AppCompatActivity {
+
+    static String USERNAME = "admin";
+    static String PASSWORD = "admin";
+    String topicStr = "pleasework";
 
     private ImageView imageView;
     private MqttAndroidClient mqttAndroidClient;
@@ -42,14 +49,15 @@ public class HomeActivity extends AppCompatActivity {
         imageView = findViewById(R.id.streamContainer);
         handler = new Handler();
 
-        String brokerUrl = "tcp://<broker_ip_address>:1883";
-        String clientId = "android_client";
+        String brokerUrl = "ws://broker.emqx.io:8083";
+        String clientId = "mqttx_c5bad67b";
         MqttConnectOptions connectOptions = new MqttConnectOptions();
         connectOptions.setCleanSession(true);
-        connectOptions.setUserName("<username>");
-        connectOptions.setPassword("<password>".toCharArray());
+        connectOptions.setUserName(USERNAME);
+        connectOptions.setPassword(PASSWORD.toCharArray());
         MemoryPersistence persistence = new MemoryPersistence();
         mqttAndroidClient = new MqttAndroidClient(this, brokerUrl, clientId, persistence);
+
 
         Button pairButton = findViewById(R.id.pairButton);
         pairButton.setOnClickListener(new View.OnClickListener() {
@@ -101,4 +109,5 @@ public class HomeActivity extends AppCompatActivity {
             Log.e(TAG, "Failed to disconnect from MQTT broker", ex);
         }
     }
+
 }
