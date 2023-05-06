@@ -33,6 +33,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import java.util.Arrays;
 
+
 public class HomeActivity extends AppCompatActivity {
 
     private Button pairBtn;
@@ -46,16 +47,42 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        init();
+        try {
+            init();
+        } catch (MqttException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }
 
-    private void init() {
-        clientID = "xxx";
-        topic = "vanny_test/mqtt";
-        client = new MqttAndroidClient(this.getApplicationContext(), "ws://broker.emqx.io:1833", clientID, Ack.AUTO_ACK);
+    private void init() throws MqttException {
+        String topic = "vanny_test/mqtt";
+
+
+        String broker = "tcp://broker.emqx.io:1883";
+        String clientId = MqttClient.generateClientId();
+
         Button pairBtn = findViewById(R.id.pairButton);
+
+        // persistence
+        MemoryPersistence persistence = new MemoryPersistence(); // MQTT connect options
+        MqttConnectOptions connOpts = new MqttConnectOptions();
+
+
+
+        MqttClient client = new MqttClient(broker, clientId, persistence);
+        // callback
+        client.setCallback(new SampleCallback());
+
+        System.out.println("Connecting to broker: " + broker);
+        client.connect(connOpts);
+        System.out.println("Connected to broker: " + broker);
+
+        client.subscribe(topic);
+        System.out.println("Subscribed to topic: " + topic);
+
+
         pairBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,24 +114,4 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    public void sub(){
-        client.subscribe(topic, 0);
-        client.setCallback(new MqttCallback() {
-            @Override
-            public void connectionLost(Throwable cause) {
-
-            }
-
-            @Override
-            public void messageArrived(String topic, MqttMessage message) throws Exception {
-                Log.d(TAG, "Topic: " + topic);
-                Log.d(TAG, "Message: " + new String(message.getPayload()));
-            }
-
-            @Override
-            public void deliveryComplete(IMqttDeliveryToken token) {
-
-            }
-        });
-    }
 }
