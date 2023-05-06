@@ -18,8 +18,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import org.eclipse.paho.android.service.MqttAndroidClient;
+//import org.eclipse.paho.android.service.MqttAndroidClient;
+import info.mqtt.android.service.Ack;
+import info.mqtt.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -32,82 +35,76 @@ import java.util.Arrays;
 
 public class HomeActivity extends AppCompatActivity {
 
-    static String USERNAME = "admin";
-    static String PASSWORD = "admin";
-    String topicStr = "pleasework";
+    private Button pairBtn;
+    private static final String TAG = "HomeActivity";
+    private String topic, clientID;
+    private MqttAndroidClient client;
 
-    private ImageView imageView;
-    private MqttAndroidClient mqttAndroidClient;
-    private Handler handler;
-    private final String TAG = "HomeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        imageView = findViewById(R.id.streamContainer);
-        handler = new Handler();
-
-        String brokerUrl = "ws://broker.emqx.io:8083";
-        String clientId = "mqttx_c5bad67b";
-        MqttConnectOptions connectOptions = new MqttConnectOptions();
-        connectOptions.setCleanSession(true);
-        connectOptions.setUserName(USERNAME);
-        connectOptions.setPassword(PASSWORD.toCharArray());
-        MemoryPersistence persistence = new MemoryPersistence();
-        mqttAndroidClient = new MqttAndroidClient(this, brokerUrl, clientId, persistence);
+        init();
 
 
-        Button pairButton = findViewById(R.id.pairButton);
-        pairButton.setOnClickListener(new View.OnClickListener() {
+    }
+
+    private void init() {
+        clientID = "xxx";
+        topic = "vanny_test/mqtt";
+        client = new MqttAndroidClient(this.getApplicationContext(), "ws://broker.emqx.io:1833", clientID, Ack.AUTO_ACK);
+        Button pairBtn = findViewById(R.id.pairButton);
+        pairBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    IMqttToken token = mqttAndroidClient.connect(connectOptions);
-                    token.setActionCallback(new IMqttActionListener() {
-                        @Override
-                        public void onSuccess(IMqttToken asyncActionToken) {
-                            Log.i(TAG, "Connected to MQTT broker");
-                            try {
-                                mqttAndroidClient.subscribe("my/topic", 0, new IMqttMessageListener() {
-                                    @Override
-                                    public void messageArrived(String topic, MqttMessage message) throws Exception {
-                                        handler.post(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                byte[] payload = message.getPayload();
-                                                Bitmap bitmap = BitmapFactory.decodeByteArray(payload, 0, payload.length);
-                                                imageView.setImageBitmap(bitmap);
-                                            }
-                                        });
-                                    }
-                                });
-                            } catch (MqttException ex) {
-                                Log.e(TAG, "Failed to subscribe to MQTT topic", ex);
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                            Log.e(TAG, "Failed to connect to MQTT broker", exception);
-                        }
-                    });
-                } catch (MqttException ex) {
-                    Log.e(TAG, "Failed to connect to MQTT broker", ex);
-                }
+                connectx();
             }
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        try {
-            mqttAndroidClient.disconnect();
-        } catch (MqttException ex) {
-            Log.e(TAG, "Failed to disconnect from MQTT broker", ex);
-        }
+    public void connectx(){
+        String clientId = MqttClient.generateClientId();
+        MqttAndroidClient client =
+                new MqttAndroidClient(this.getApplicationContext(), "tcp://broker.hivemq.com:1883", clientID, Ack.AUTO_ACK);
+
+        IMqttToken token = client.connect();
+        token.setActionCallback(new IMqttActionListener() {
+            @Override
+            public void onSuccess(IMqttToken asyncActionToken) {
+                // We are connected
+                client.subscribe(topic, 0);
+                Log.d(TAG, "onSuccess");
+            }
+
+            @Override
+            public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                // Something went wrong e.g. connection timeout or firewall problems
+                Log.d(TAG, "onFailure");
+
+            }
+        });
     }
 
+    public void sub(){
+        client.subscribe(topic, 0);
+        client.setCallback(new MqttCallback() {
+            @Override
+            public void connectionLost(Throwable cause) {
+
+            }
+
+            @Override
+            public void messageArrived(String topic, MqttMessage message) throws Exception {
+                Log.d(TAG, "Topic: " + topic);
+                Log.d(TAG, "Message: " + new String(message.getPayload()));
+            }
+
+            @Override
+            public void deliveryComplete(IMqttDeliveryToken token) {
+
+            }
+        });
+    }
 }
