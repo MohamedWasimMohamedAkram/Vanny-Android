@@ -12,7 +12,6 @@ import java.io.IOException;
 
 public class SampleCallback implements MqttCallback {
 
-
     public void connectionLost(Throwable cause) {
         System.out.println("connection lost：" + cause.getMessage());
     }
