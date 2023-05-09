@@ -31,7 +31,7 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'org.zeromq:jeromq:0.4.4'
+    implementation 'org.zeromq:jeromq:0.5.3'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.jcraft:jsch:0.1.55'
