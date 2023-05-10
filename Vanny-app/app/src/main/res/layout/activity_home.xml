@@ -46,11 +46,12 @@
         android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         android:onClick="publish"
+
         />
 
-    <ImageView
+    <VideoView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:id="@+id/streamContainer"
         />
 
