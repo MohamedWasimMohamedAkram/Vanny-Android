@@ -86,6 +86,7 @@ public class VideoActivity extends AppCompatActivity {
     private void loadVideoFromInternalStorage(String filePath){
 
         Uri uri = Uri.parse(Environment.getExternalStorageDirectory()+filePath);
+        VideoView myVideoView = (VideoView) findViewById(R.id.videoView);
         myVideoView.setVideoURI(uri);
 
     }

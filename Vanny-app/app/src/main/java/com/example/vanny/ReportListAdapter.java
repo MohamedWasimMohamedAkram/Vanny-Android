@@ -1,5 +1,4 @@
 package com.example.vanny;
-package com.example.custom_listview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,7 +18,7 @@ public class ReportListAdapter extends ArrayAdapter<Report> {
 
     public ReportListAdapter(Context context, ArrayList<Report> userArrayList){
 
-        super(context,R.layout.list_item,userArrayList);
+        super(context,R.layout.activity_reports,userArrayList);
 
     }
 
@@ -31,7 +30,7 @@ public class ReportListAdapter extends ArrayAdapter<Report> {
 
         if (convertView == null){
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item,parent,false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_reports,parent,false);
 
         }
 

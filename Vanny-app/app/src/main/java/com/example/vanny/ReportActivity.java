@@ -1,19 +1,15 @@
 package com.example.vanny;
 
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
-
-
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.custom_listview.databinding.ActivityMainBinding;
-import com.example.custom_listview.databinding.ActivityUserBinding;
+
+import java.util.ArrayList;
 
 public class ReportActivity extends AppCompatActivity {
 
