@@ -1,26 +1,13 @@
 package com.example.vanny;
 
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -28,9 +15,7 @@ import android.widget.AdapterView;
 import com.example.custom_listview.databinding.ActivityMainBinding;
 import com.example.custom_listview.databinding.ActivityUserBinding;
 
-import java.util.ArrayList;
-
-    public class ReportActivity extends AppCompatActivity {
+public class ReportActivity extends AppCompatActivity {
 
         ActivityMainBinding binding;
 
