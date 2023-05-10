@@ -1,15 +1,14 @@
 package com.example.vanny;
 public class Report {
 
-    String name, lastMessage, lastMsgTime, phoneNo, country;
+    String type, Title, Message, filePath;
     int imageId;
 
-    public Report(String name, String lastMessage, String lastMsgTime, String phoneNo, String country, int imageId) {
-        this.name = name;
-        this.lastMessage = lastMessage;
-        this.lastMsgTime = lastMsgTime;
-        this.phoneNo = phoneNo;
-        this.country = country;
+    public Report(String type, String Title, String Message, String filePath, int imageId) {
+        this.type = type;
+        this.Title = Title;
+        this.Message = Message;
+        this.filePath = filePath;
         this.imageId = imageId;
     }
 }

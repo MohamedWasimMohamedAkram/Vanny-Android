@@ -36,7 +36,7 @@ public class ReportActivity extends AppCompatActivity {
 
             for(int i = 0;i< imageId.length;i++){
 
-                Report report = new Report(name[i],lastMessage[i],lastmsgTime[i],phoneNo[i],country[i],imageId[i]);
+                Report report = new Report(name[i],lastMessage[i],lastmsgTime[i],phoneNo[i],imageId[i]);
                 userArrayList.add(report);
 
             }
