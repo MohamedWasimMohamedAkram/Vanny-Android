@@ -44,6 +44,12 @@
                     android:layout_marginTop="5dp"
                     android:text="Hi, How Are you"/>
 
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Play" />
+
             </LinearLayout>
 
 
@@ -56,7 +62,6 @@
             android:padding="15dp"
             android:layout_alignParentRight="true"
             android:text="8:35 pm"/>
-
 
 
     </RelativeLayout>
