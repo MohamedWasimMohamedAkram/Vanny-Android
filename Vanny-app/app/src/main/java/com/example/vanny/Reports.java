@@ -1,64 +1,87 @@
 package com.example.vanny;
 
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+
 public class Reports extends AppCompatActivity {
+package com.example.custom_listview;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reports);
-    }
+import androidx.appcompat.app.AppCompatActivity;
 
-
-    private void saveVideoToInternalStorage (String filePath) {
-
-        File newfile;
-
-        try {
-
-            File currentFile = new File(filePath);
-            String fileName = currentFile.getName();
-
-            ContextWrapper cw = new ContextWrapper(getApplicationContext());
-            File directory = cw.getDir("videoDir", Context.MODE_PRIVATE);
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 
 
-            newfile = new File(directory, fileName);
+import com.example.custom_listview.databinding.ActivityMainBinding;
+import com.example.custom_listview.databinding.ActivityUserBinding;
 
-            if(currentFile.exists()){
+import java.util.ArrayList;
 
-                InputStream in = new FileInputStream(currentFile);
-                OutputStream out = new FileOutputStream(newfile);
+    public class ReportActivity extends AppCompatActivity {
 
-                // Copy the bits from instream to outstream
-                byte[] buf = new byte[1024];
-                int len;
+        ActivityMainBinding binding;
 
-                while ((len = in.read(buf)) > 0) {
-                    out.write(buf, 0, len);
-                }
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            binding = ActivityMainBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
 
-                in.close();
-                out.close();
+            int[] imageId = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d,R.drawable.e,
+                    R.drawable.f,R.drawable.g,R.drawable.h,R.drawable.i};
+            String[] name = {"Christopher","Craig","Sergio","Mubariz","Mike","Michael","Toa","Ivana","Alex"};
+            String[] lastMessage = {"Heye","Supp","Let's Catchup","Dinner tonight?","Gotta go",
+                    "i'm in meeting","Gotcha","Let's Go","any Weekend Plans?"};
+            String[] lastmsgTime = {"8:45 pm","9:00 am","7:34 pm","6:32 am","5:76 am",
+                    "5:00 am","7:34 pm","2:32 am","7:76 am"};
+            String[] phoneNo = {"7656610000","9999043232","7834354323","9876543211","5434432343",
+                    "9439043232","7534354323","6545543211","7654432343"};
+            String[] country = {"United States","Russia","India","Israel","Germany","Thailand","Canada","France","Switzerland"};
 
-                Log.v("", "Video file saved successfully.");
+            ArrayList<Report> userArrayList = new ArrayList<>();
 
-            }else{
-                Log.v("", "Video saving failed. Source file missing.");
+            for(int i = 0;i< imageId.length;i++){
+
+                Report report = new Report(name[i],lastMessage[i],lastmsgTime[i],phoneNo[i],country[i],imageId[i]);
+                userArrayList.add(report);
+
             }
 
 
+            ReportListAdapter listAdapter = new ReportListAdapter(ReportActivity.this,userArrayList);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            binding.listview.setAdapter(listAdapter);
+            binding.listview.setClickable(true);
+            binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Intent i = new Intent(MainActivity.this,UserActivity.class);
+                    i.putExtra("name",name[position]);
+                    i.putExtra("phone",phoneNo[position]);
+                    i.putExtra("country",country[position]);
+                    i.putExtra("imageid",imageId[position]);
+                    startActivity(i);
+
+                }
+            });
+
         }
 
-    }
 
-    private void loadVideoFromInternalStorage(String filePath){
 
-        Uri uri = Uri.parse(Environment.getExternalStorageDirectory()+filePath);
-        myVideoView.setVideoURI(uri);
-
-    }
-
-}
