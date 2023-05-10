@@ -10,7 +10,7 @@ import android.util.Log;
 import com.example.custom_listview.databinding.ActivityMainBinding;
 import com.example.custom_listview.databinding.ActivityUserBinding;
 
-public class ReportActivity extends AppCompatActivity {
+public class ReportItem extends AppCompatActivity {
 
     ActivityUserBinding binding;
 
