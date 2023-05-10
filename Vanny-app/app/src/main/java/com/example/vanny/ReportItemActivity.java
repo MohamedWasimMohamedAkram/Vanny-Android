@@ -5,12 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.custom_listview.databinding.ActivityMainBinding;
 import com.example.custom_listview.databinding.ActivityUserBinding;
 
-public class ReportItem extends AppCompatActivity {
+public class ReportItemActivity extends AppCompatActivity {
 
     ActivityUserBinding binding;
 

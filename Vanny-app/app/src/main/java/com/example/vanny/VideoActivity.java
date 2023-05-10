@@ -12,15 +12,13 @@ import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.vanny.R;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class Video extends AppCompatActivity {
+public class VideoActivity extends AppCompatActivity {
     private String videoPath;
     public Video (String videoPath) {
         this.videoPath = videoPath;
