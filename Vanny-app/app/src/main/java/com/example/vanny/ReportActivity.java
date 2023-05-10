@@ -7,18 +7,18 @@ import android.widget.AdapterView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.custom_listview.databinding.ActivityMainBinding;
+import com.example.vanny.databinding.ReportActivityBinding;
 
 import java.util.ArrayList;
 
 public class ReportActivity extends AppCompatActivity {
 
-        ActivityMainBinding binding;
+          ReportActivityBinding binding;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            binding = ActivityMainBinding.inflate(getLayoutInflater());
+            binding =  ReportActivityBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
 
             int[] imageId = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d,R.drawable.e,
@@ -50,7 +50,7 @@ public class ReportActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    Intent i = new Intent(MainActivity.this,UserActivity.class);
+                    Intent i = new Intent(ReportActivity.this, ReportItemActivity.class);
                     i.putExtra("name",name[position]);
                     i.putExtra("phone",phoneNo[position]);
                     i.putExtra("country",country[position]);

@@ -20,7 +20,7 @@ import java.io.OutputStream;
 
 public class VideoActivity extends AppCompatActivity {
     private String videoPath;
-    public Video (String videoPath) {
+    public VideoActivity (String videoPath) {
         this.videoPath = videoPath;
     }
     @Override

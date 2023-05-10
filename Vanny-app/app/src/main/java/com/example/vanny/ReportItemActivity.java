@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.custom_listview.databinding.ActivityMainBinding;
-import com.example.custom_listview.databinding.ActivityUserBinding;
+
+import com.example.vanny.databinding.ActivityUserBinding;
 
 public class ReportItemActivity extends AppCompatActivity {
 
