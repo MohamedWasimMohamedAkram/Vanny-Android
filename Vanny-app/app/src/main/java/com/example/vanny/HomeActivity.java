@@ -1,6 +1,9 @@
 package com.example.vanny;
 
+import org.zeromq.SocketType;
 import org.zeromq.ZMQ;
+import org.zeromq.ZContext;
+
 import java.io.ByteArrayInputStream;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,7 +19,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private Handler handler;
-    private ZMQ.Socket subscriber;
+    private ZMQ.Socket socket;
     private Thread subscriberThread;
     private volatile boolean running;
 
@@ -25,25 +28,28 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        imageView = findViewById(R.id.streamContainer);
+        //imageView = findViewById(R.id.streamContainer);
         handler = new Handler(Looper.getMainLooper());
         running = true;
-        subscriberThread = new Thread(() -> {
-            ZMQ.Context context = ZMQ.context(1);
-            subscriber = context.socket(ZMQ.SUB);
-            subscriber.connect("tcp://<RASPBERRY_PI_IP_ADDRESS>:5555");
-            subscriber.subscribe("".getBytes());
-            while (running) {
-                byte[] frameBytes = subscriber.recv();
-                if (frameBytes != null) {
-                    Bitmap bitmap = BitmapFactory.decodeStream(new ByteArrayInputStream(frameBytes));
-                    handler.post(() -> imageView.setImageBitmap(bitmap));
-                }
+        try (ZContext context = new ZContext()) {
+            // Socket to talk to clients
+            ZMQ.Socket socket = context.createSocket(SocketType.REP);
+            socket.bind("tcp://*:5555");
+
+            while (!Thread.currentThread().isInterrupted()) {
+                // Block until a message is received
+                byte[] reply = socket.recv(0);
+
+                // Print the message
+                System.out.println(
+                        "Received: [" + new String(reply, ZMQ.CHARSET) + "]"
+                );
+
+                // Send a response
+                String response = "Hello, world!";
+                socket.send(response.getBytes(ZMQ.CHARSET), 0);
             }
-            subscriber.close();
-            context.term();
-        });
-        subscriberThread.start();
+        }
     }
 
     @Override
