@@ -64,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
 
         System.out.println( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath());
 
-        String broker = "tcp://139.179.185.15";
+        String broker = "tcp://broker.emqx.io:1883";
         String clientId = MqttClient.generateClientId();
 
         Button pairBtn = findViewById(R.id.pairButton);
