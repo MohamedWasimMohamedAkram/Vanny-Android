@@ -6,23 +6,23 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
-import com.example.vanny.databinding.ReportActivityBinding;
+import com.example.vanny.databinding.ActivityReportsBinding;
 
 import java.util.ArrayList;
 
 public class ReportActivity extends AppCompatActivity {
 
-          ReportActivityBinding binding;
+    ActivityReportsBinding binding;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            binding =  ReportActivityBinding.inflate(getLayoutInflater());
+            binding =  ActivityReportsBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
 
-            int[] imageId = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d,R.drawable.e,
-                    R.drawable.f,R.drawable.g,R.drawable.h,R.drawable.i};
+            String[] imageId = {};
             String[] name = {"Christopher","Craig","Sergio","Mubariz","Mike","Michael","Toa","Ivana","Alex"};
             String[] lastMessage = {"Heye","Supp","Let's Catchup","Dinner tonight?","Gotta go",
                     "i'm in meeting","Gotcha","Let's Go","any Weekend Plans?"};

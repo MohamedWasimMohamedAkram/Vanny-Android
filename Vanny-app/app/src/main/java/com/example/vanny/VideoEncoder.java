@@ -2,7 +2,6 @@ package com.example.vanny;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import org.jcodec.api.SequenceEncoder;
 import org.jcodec.api.android.AndroidSequenceEncoder;
 import org.jcodec.common.io.NIOUtils;
 import org.jcodec.common.io.SeekableByteChannel;
@@ -20,14 +19,13 @@ public class VideoEncoder {
     }
 
 
-// GOP size will be supported in 0.2
-// enc.getEncoder().setKeyInterval(25);
+
     private void encodeVideo() {
         SeekableByteChannel out = null;
         try {
-            //SequenceEncoder enc = new SequenceEncoder(new File("output.mp4"));
+
             out = NIOUtils.writableFileChannel("/tmp/output.mp4");
-            // for Android use: AndroidSequenceEncoder
+
             AndroidSequenceEncoder enc = new AndroidSequenceEncoder(out, Rational.R(25, 1));
             for (String filePath:this.imagePaths){
                 Bitmap bMap = BitmapFactory.decodeFile(filePath);

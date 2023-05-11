@@ -1,5 +1,5 @@
 package com.example.vanny;
-package com.example.custom_listview;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,16 +7,16 @@ import android.content.Intent;
 import android.os.Bundle;
 
 
-import com.example.vanny.databinding.ActivityUserBinding;
+import com.example.vanny.databinding.ReportItemBinding;
 
 public class ReportItemActivity extends AppCompatActivity {
 
-    ActivityUserBinding binding;
+    ReportItemBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityUserBinding.inflate(getLayoutInflater());
+        binding = ReportItemBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Intent intent = this.getIntent();
