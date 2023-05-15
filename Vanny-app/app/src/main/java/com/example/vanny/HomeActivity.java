@@ -1,60 +1,38 @@
 package com.example.vanny;
 
-import org.zeromq.SocketType;
-import org.zeromq.ZMQ;
-import org.zeromq.ZContext;
 
-import java.io.ByteArrayInputStream;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.MediaController;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.widget.Toast;
 import android.widget.VideoView;
+
+import java.io.IOException;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
 public class HomeActivity extends AppCompatActivity {
 
+    private static final String STREAM_URL = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
     private VideoView videoView;
-    private String streamUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        MediaController mediaController = new MediaController(this);
-        Button pairButton = findViewById(R.id.pairButton);
-
-        pairButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Get a reference to the VideoView
-                videoView = findViewById(R.id.streamContainer);
-
-                // Create a MediaController to control the playback
-                mediaController.setAnchorView(videoView);
-
-                // Set the MediaController to the VideoView
-                videoView.setMediaController(mediaController);
-
-                // Set the video URI to the MJPEG-Streamer URL
-                Uri videoUri = Uri.parse(streamUrl);
-                videoView.setVideoURI(videoUri);
-
-                // Start the video playback
-                videoView.start();
-            }
-        });
+        videoView = findViewById(R.id.stream_container);
+        videoView.setVideoURI(Uri.parse(STREAM_URL));
+        videoView.start();
     }
+
+
 }

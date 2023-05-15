@@ -50,10 +50,9 @@
         />
 
     <VideoView
+        android:id="@+id/stream_container"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/streamContainer"
+        android:layout_height="300dp"
         />
-
 
 </RelativeLayout>
