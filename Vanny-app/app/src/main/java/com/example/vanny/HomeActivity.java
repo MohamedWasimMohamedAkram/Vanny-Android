@@ -1,30 +1,31 @@
 package com.example.vanny;
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.widget.ImageView;
-
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
+import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.net.Socket;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 import java.io.IOException;
-
-
 public class HomeActivity extends AppCompatActivity {
 
     private ImageView imageView;
-    private Socket socket;
-    private DataInputStream dataInputStream;
+    private Handler handler;
     private boolean running;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,40 +33,40 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         imageView = findViewById(R.id.stream_container);
+        handler = new Handler();
         running = true;
 
         // Start a separate thread for receiving the video stream
         Thread receiveThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    socket = new Socket("10.0.2.2",5000);
-                    dataInputStream = new DataInputStream(socket.getInputStream());
-                    Log.d("Socket", "Connected to server");
+                while (running) {
+                    try {
+                        // Connect to the video stream URL
+                        URL url = new URL("http://127.0.0.1:5000");
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                        connection.setRequestMethod("GET");
 
-                    while (running) {
-                        // Read the length of the incoming image
-                        int length = dataInputStream.readInt();
-                        if (length > 0) {
-                            byte[] imageBytes = new byte[length];
-                            dataInputStream.readFully(imageBytes, 0, imageBytes.length);
+                        // Read the video stream as an InputStream
+                        InputStream inputStream = new BufferedInputStream(connection.getInputStream());
 
-                            // Convert the image bytes to a Bitmap
-                            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(imageBytes);
-                            final Bitmap bitmap = BitmapFactory.decodeStream(byteArrayInputStream);
+                        // Convert the InputStream to a Bitmap
+                        final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
 
-                            // Display the bitmap on the ImageView in the main UI thread
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    imageView.setImageBitmap(bitmap);
-                                }
-                            });
-                        }
+                        // Update the ImageView in the main UI thread
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageView.setImageBitmap(bitmap);
+                            }
+                        });
+
+                        // Close the connection and release resources
+                        connection.disconnect();
+                        inputStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Log.d("Socket", "Connection Failed");
                 }
             }
         });
@@ -76,16 +77,5 @@ public class HomeActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         running = false;
-
-        try {
-            if (dataInputStream != null)
-                dataInputStream.close();
-
-            if (socket != null)
-                socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
-
 }
