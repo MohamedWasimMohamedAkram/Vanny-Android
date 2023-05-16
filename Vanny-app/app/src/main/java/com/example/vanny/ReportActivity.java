@@ -19,7 +19,8 @@ public class ReportActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            binding =  ActivityReportsBinding.inflate(getLayoutInflater());
+            binding =  ActivityReportsBinding
+                    .inflate(getLayoutInflater());
             setContentView(binding.getRoot());
 
             String[] imageId = {};

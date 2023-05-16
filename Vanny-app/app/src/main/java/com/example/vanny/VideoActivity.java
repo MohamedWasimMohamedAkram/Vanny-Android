@@ -2,6 +2,7 @@ package com.example.vanny;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.Buffer;
 
 public class VideoActivity extends AppCompatActivity {
     private String videoPath;
@@ -89,6 +91,13 @@ public class VideoActivity extends AppCompatActivity {
         VideoView myVideoView = (VideoView) findViewById(R.id.videoView);
         myVideoView.setVideoURI(uri);
 
+    }
+
+    private Bitmap byteToBitmap(Buffer buffer, int width, int height) {
+        buffer.rewind();
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        bitmap.copyPixelsFromBuffer(buffer);
+        return bitmap;
     }
 
 }
